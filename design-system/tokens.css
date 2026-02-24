@@ -1,0 +1,99 @@
+/* Entity Design System — CSS Custom Properties */
+/* Clone of Dual Entry's visual language, customizable for Entity branding */
+
+:root {
+  /* === PRIMARY === */
+  --color-primary: #0f373e;
+  --color-primary-light: #206570;
+  --color-primary-lighter: #2a8090;
+  --color-primary-dark: #0a2529;
+
+  /* === ACCENT (Purple → Cyan gradient endpoints) === */
+  --color-accent: #966AF8;
+  --color-accent-cyan: #06D6FE;
+  --color-accent-light: #b794ff;
+
+  /* === SURFACES === */
+  --color-surface: #ffffff;
+  --color-surface-secondary: #f8fbfc;
+  --color-surface-dark: #0f373e;
+  --color-surface-darker: #0a2529;
+  --color-surface-card: #ffffff;
+
+  /* === TEXT === */
+  --color-text: #1B1B1B;
+  --color-text-secondary: #4E4E4E;
+  --color-text-tertiary: #7A7A7A;
+  --color-text-on-dark: #ffffff;
+  --color-text-on-dark-secondary: rgba(255, 255, 255, 0.7);
+  --color-text-on-dark-muted: rgba(255, 255, 255, 0.5);
+
+  /* === BORDERS === */
+  --color-border: #e5e7eb;
+  --color-border-light: #f0f0f0;
+  --color-border-dark: rgba(255, 255, 255, 0.1);
+
+  /* === GRADIENTS === */
+  --gradient-primary: linear-gradient(135deg, #966AF8 0%, #06D6FE 100%);
+  --gradient-hero: linear-gradient(180deg, #0f373e 0%, #0a2529 100%);
+  --gradient-cta: linear-gradient(135deg, #0f373e 0%, #206570 100%);
+  --gradient-card-border: linear-gradient(135deg, rgba(150, 106, 248, 0.3) 0%, rgba(6, 214, 254, 0.3) 100%);
+  --gradient-text: linear-gradient(135deg, #966AF8 0%, #06D6FE 100%);
+
+  /* === TYPOGRAPHY === */
+  --font-display: 'Merriweather', Georgia, serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  --text-4xl: 2.25rem;
+  --text-5xl: 3rem;
+  --text-6xl: 3.75rem;
+  --text-7xl: 4.5rem;
+
+  /* === SPACING === */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+
+  /* === BORDER RADIUS === */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 24px;
+  --radius-full: 9999px;
+
+  /* === SHADOWS === */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.12);
+  --shadow-xl: 0 20px 60px rgba(0, 0, 0, 0.15);
+  --shadow-glow: 0 0 40px rgba(150, 106, 248, 0.15);
+  --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.06);
+
+  /* === ANIMATION === */
+  --duration-fast: 150ms;
+  --duration-normal: 250ms;
+  --duration-slow: 400ms;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.45, 0, 0.55, 1);
+
+  /* === LAYOUT === */
+  --max-width: 1280px;
+  --nav-height: 72px;
+}
