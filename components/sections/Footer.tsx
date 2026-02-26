@@ -58,7 +58,7 @@ export default function Footer() {
             </p>
             <a
               href="mailto:hello@runentity.com"
-              className="text-[#10B981] hover:text-[#059669] text-sm font-medium transition-colors"
+              className="text-white hover:text-white/70 text-sm font-medium transition-colors"
             >
               hello@runentity.com
             </a>

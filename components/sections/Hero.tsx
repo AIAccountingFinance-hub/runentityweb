@@ -49,7 +49,7 @@ export default function Hero() {
             transition={{ duration: 0.3, delay: 0.3 }}
             className="font-body text-[16px] text-[#6B6B6B] leading-[1.7] max-w-[560px] mx-auto mb-6"
           >
-            <span className="text-gradient font-semibold">Entity</span>, your personal accounting AI. It knows your transactions.
+            <span className="text-gradient">Entity</span>, your personal accounting AI. It knows your transactions.
             Records them. Categorizes them. Reconciles them. It matches your
             bank statements. Handles your compliances. Flags what doesn&apos;t
             add up. All of this happens before you even log in. When

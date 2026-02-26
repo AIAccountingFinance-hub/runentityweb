@@ -14,8 +14,8 @@ import {
 const features = [
   {
     icon: BookOpen,
-    iconBg: "#E8F5E9",
-    iconColor: "#10B981",
+    iconBg: "#F2F2ED",
+    iconColor: "#1A1A1A",
     title: "General Ledger",
     description: "The foundation. Multi-entity, multi-currency, append-only and immutable.",
     accent: true,
@@ -77,7 +77,7 @@ export default function Platform() {
           transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
           className="mb-16"
         >
-          <p className="eyebrow text-[#10B981] mb-4">THE PLATFORM</p>
+          <p className="eyebrow text-[#1A1A1A] mb-4">THE PLATFORM</p>
           <h2 className="font-display text-4xl md:text-5xl lg:text-[56px] text-[#1A1A1A] leading-[1.1] mb-6">
             What accounting software
             <br />
@@ -123,12 +123,12 @@ export default function Platform() {
               <div
                 className="w-14 h-14 rounded-xl flex items-center justify-center mb-6"
                 style={{
-                  backgroundColor: feature.accent ? "rgba(16, 185, 129, 0.15)" : feature.iconBg
+                  backgroundColor: feature.accent ? "rgba(255, 255, 255, 0.1)" : feature.iconBg
                 }}
               >
                 <feature.icon
                   className="w-7 h-7"
-                  style={{ color: feature.accent ? "#10B981" : feature.iconColor }}
+                  style={{ color: feature.accent ? "#FFFFFF" : feature.iconColor }}
                   strokeWidth={1.5}
                 />
               </div>

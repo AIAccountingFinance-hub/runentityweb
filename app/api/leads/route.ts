@@ -13,11 +13,35 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    const digits = phone.replace(/\D/g, "");
+    if (digits.length !== 10) {
+      return NextResponse.json(
+        { error: "Phone must be 10 digits" },
+        { status: 400 }
+      );
+    }
+
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!emailRegex.test(email)) {
+      return NextResponse.json(
+        { error: "Invalid email address" },
+        { status: 400 }
+      );
+    }
+    const domain = email.split("@")[1].toLowerCase();
+    const disposable = ["mailinator.com", "guerrillamail.com", "tempmail.com", "throwaway.email", "yopmail.com", "sharklasers.com", "guerrillamailblock.com", "grr.la", "dispostable.com", "trashmail.com", "10minutemail.com", "temp-mail.org", "fakeinbox.com", "maildrop.cc", "getairmail.com"];
+    if (disposable.includes(domain)) {
+      return NextResponse.json(
+        { error: "Please use a permanent email address" },
+        { status: 400 }
+      );
+    }
+
     const supabase = getSupabase();
 
     if (!supabase) {
-      console.log("[Lead - no DB]", { name, country_code, phone, email, variant });
-      return NextResponse.json({ success: true });
+      console.error("[Lead] No Supabase client - env vars missing");
+      return NextResponse.json({ success: true, note: "no-db" });
     }
 
     const { error } = await supabase.from("leads").insert({
@@ -29,12 +53,13 @@ export async function POST(req: NextRequest) {
     });
 
     if (error) {
-      console.error("Supabase insert error:", error);
-      return NextResponse.json({ error: "Failed to save" }, { status: 500 });
+      console.error("[Lead] Supabase insert error:", JSON.stringify(error));
+      return NextResponse.json({ error: error.message }, { status: 500 });
     }
 
     return NextResponse.json({ success: true });
-  } catch {
+  } catch (err) {
+    console.error("[Lead] Unexpected error:", err);
     return NextResponse.json(
       { error: "Invalid request" },
       { status: 400 }

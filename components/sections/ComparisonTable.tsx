@@ -89,7 +89,7 @@ function CellContent({
         }}
         className="inline-flex"
       >
-        <Check className="w-6 h-6 text-[#10B981]" strokeWidth={3} />
+        <Check className="w-6 h-6 text-[#1A1A1A]" strokeWidth={3} />
       </motion.div>
     ) : (
       <X className="w-5 h-5 text-[#CCCCCC] mx-auto" />
@@ -98,7 +98,7 @@ function CellContent({
 
   if (data.type === "highlight") {
     return (
-      <span className="font-mono text-sm text-[#10B981] font-bold">
+      <span className="font-mono text-sm text-[#1A1A1A] font-bold">
         {data.value as string}
       </span>
     );
@@ -111,7 +111,7 @@ function CellContent({
       }`}
     >
       {data.check && (
-        <Check className="w-4 h-4 text-[#10B981] inline mr-1.5" strokeWidth={2.5} />
+        <Check className="w-4 h-4 text-[#1A1A1A] inline mr-1.5" strokeWidth={2.5} />
       )}
       {data.value as string}
     </span>
@@ -160,8 +160,8 @@ export default function ComparisonTable() {
                   </th>
                   <th className="py-5 px-6 w-1/4 relative">
                     {/* Green top border for Entity column */}
-                    <div className="absolute top-0 left-4 right-4 h-1 bg-[#10B981] rounded-full" />
-                    <span className="text-[#10B981] font-body font-bold text-lg">
+                    <div className="absolute top-0 left-4 right-4 h-1 bg-[#1A1A1A] rounded-full" />
+                    <span className="text-[#1A1A1A] font-body font-bold text-lg">
                       Entity
                     </span>
                   </th>
@@ -186,12 +186,12 @@ export default function ComparisonTable() {
                     }}
                     className={`border-t border-[#E5E5E0] ${
                       index % 2 === 0 ? "bg-white" : "bg-[#FAFAF8]"
-                    } hover:bg-[#10B981]/[0.03] transition-colors duration-200`}
+                    } hover:bg-[#1A1A1A]/[0.03] transition-colors duration-200`}
                   >
                     <td className="py-5 px-6 text-[#1A1A1A] font-medium">
                       {row.feature}
                     </td>
-                    <td className="py-5 px-6 text-center bg-[#10B981]/[0.02]">
+                    <td className="py-5 px-6 text-center bg-[#1A1A1A]/[0.02]">
                       <CellContent data={row.entity} index={index} isInView={isInView} />
                     </td>
                     <td className="py-5 px-6 text-center">

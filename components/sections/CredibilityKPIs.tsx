@@ -34,8 +34,8 @@ function CountUpNumber({ end, suffix = "" }: { end: number; suffix?: string }) {
 const kpis = [
   {
     icon: Keyboard,
-    iconBg: "#E8F5E9",
-    iconColor: "#10B981",
+    iconBg: "#F2F2ED",
+    iconColor: "#1A1A1A",
     title: "Keyboard-first",
     description: "Navigate your entire books without touching the mouse",
     isNumber: false,
@@ -100,7 +100,7 @@ export default function CredibilityKPIs() {
               <h3 className="font-mono text-2xl font-bold mb-2">
                 {kpi.isNumber && kpi.countUp ? (
                   <>
-                    <span className="text-[#10B981]">
+                    <span className="text-[#1A1A1A]">
                       <CountUpNumber end={kpi.countUp.end} suffix={kpi.countUp.suffix} />
                     </span>
                     <span className="text-[#1A1A1A] font-display text-xl">

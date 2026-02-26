@@ -57,9 +57,9 @@ function CapabilityVisual({ type }: { type: string }) {
           initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ delay: 0.5, duration: 0.5 }} />
         <motion.line x1="25" y1="45" x2="55" y2="45" stroke="currentColor" strokeWidth="1.5"
           initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ delay: 0.7, duration: 0.5 }} />
-        <motion.circle cx="60" cy="55" r="12" fill="#10B981" fillOpacity="0.2"
+        <motion.circle cx="60" cy="55" r="12" fill="white" fillOpacity="0.2"
           initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 1, type: "spring" }} />
-        <motion.path d="M55 55 L58 58 L65 51" stroke="#10B981" strokeWidth="2" fill="none"
+        <motion.path d="M55 55 L58 58 L65 51" stroke="white" strokeWidth="2" fill="none"
           initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ delay: 1.2, duration: 0.4 }} />
       </svg>
     ),
@@ -67,15 +67,15 @@ function CapabilityVisual({ type }: { type: string }) {
       <svg viewBox="0 0 80 80" className="w-full h-full">
         <motion.rect x="10" y="15" width="25" height="20" rx="3" fill="currentColor" fillOpacity="0.15"
           initial={{ scale: 0, x: 40 }} animate={{ scale: 1, x: 0 }} transition={{ duration: 0.5 }} />
-        <motion.rect x="45" y="15" width="25" height="20" rx="3" fill="#10B981" fillOpacity="0.3"
+        <motion.rect x="45" y="15" width="25" height="20" rx="3" fill="white" fillOpacity="0.3"
           initial={{ scale: 0, x: -40 }} animate={{ scale: 1, x: 0 }} transition={{ duration: 0.5, delay: 0.2 }} />
         <motion.rect x="10" y="45" width="25" height="20" rx="3" fill="currentColor" fillOpacity="0.1"
           initial={{ scale: 0, x: 40 }} animate={{ scale: 1, x: 0 }} transition={{ duration: 0.5, delay: 0.4 }} />
         <motion.rect x="45" y="45" width="25" height="20" rx="3" fill="currentColor" fillOpacity="0.15"
           initial={{ scale: 0, x: -40 }} animate={{ scale: 1, x: 0 }} transition={{ duration: 0.5, delay: 0.6 }} />
-        <motion.path d="M40 10 L40 70" stroke="#10B981" strokeWidth="1" strokeDasharray="4 4"
+        <motion.path d="M40 10 L40 70" stroke="white" strokeWidth="1" strokeDasharray="4 4"
           initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ delay: 0.8, duration: 0.5 }} />
-        <motion.path d="M5 40 L75 40" stroke="#10B981" strokeWidth="1" strokeDasharray="4 4"
+        <motion.path d="M5 40 L75 40" stroke="white" strokeWidth="1" strokeDasharray="4 4"
           initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ delay: 1, duration: 0.5 }} />
       </svg>
     ),
@@ -85,17 +85,17 @@ function CapabilityVisual({ type }: { type: string }) {
           initial={{ x: -20, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ duration: 0.5 }} />
         <motion.rect x="45" y="25" width="30" height="35" rx="2" fill="none" stroke="currentColor" strokeWidth="1.5"
           initial={{ x: 20, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ duration: 0.5 }} />
-        <motion.path d="M35 42 L45 42" stroke="#10B981" strokeWidth="2"
+        <motion.path d="M35 42 L45 42" stroke="white" strokeWidth="2"
           initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ delay: 0.6, duration: 0.3 }} />
-        <motion.path d="M42 38 L45 42 L42 46" stroke="#10B981" strokeWidth="2" fill="none"
+        <motion.path d="M42 38 L45 42 L42 46" stroke="white" strokeWidth="2" fill="none"
           initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ delay: 0.8, duration: 0.3 }} />
         <motion.line x1="10" y1="35" x2="30" y2="35" stroke="currentColor" strokeWidth="1"
           initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ delay: 0.3 }} />
         <motion.line x1="10" y1="42" x2="25" y2="42" stroke="currentColor" strokeWidth="1"
           initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ delay: 0.4 }} />
-        <motion.line x1="50" y1="35" x2="70" y2="35" stroke="#10B981" strokeWidth="1"
+        <motion.line x1="50" y1="35" x2="70" y2="35" stroke="white" strokeWidth="1"
           initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ delay: 1 }} />
-        <motion.line x1="50" y1="42" x2="65" y2="42" stroke="#10B981" strokeWidth="1"
+        <motion.line x1="50" y1="42" x2="65" y2="42" stroke="white" strokeWidth="1"
           initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ delay: 1.1 }} />
       </svg>
     ),
@@ -116,9 +116,9 @@ function CapabilityVisual({ type }: { type: string }) {
       <svg viewBox="0 0 80 80" className="w-full h-full">
         <motion.rect x="15" y="15" width="50" height="50" rx="6" fill="none" stroke="currentColor" strokeWidth="1.5"
           initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 1 }} />
-        <motion.path d="M25 35 L30 40 L40 30" stroke="#10B981" strokeWidth="2" fill="none"
+        <motion.path d="M25 35 L30 40 L40 30" stroke="white" strokeWidth="2" fill="none"
           initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ delay: 0.5, duration: 0.4 }} />
-        <motion.path d="M25 50 L30 55 L40 45" stroke="#10B981" strokeWidth="2" fill="none"
+        <motion.path d="M25 50 L30 55 L40 45" stroke="white" strokeWidth="2" fill="none"
           initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ delay: 0.8, duration: 0.4 }} />
         <motion.line x1="45" y1="35" x2="58" y2="35" stroke="currentColor" strokeWidth="1.5"
           initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ delay: 0.6 }} />
@@ -140,7 +140,7 @@ function CapabilityVisual({ type }: { type: string }) {
           initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 0.7 }} />
         <motion.path d="M38 50 Q40 53 42 50" stroke="currentColor" strokeWidth="1.5" fill="none"
           initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ delay: 0.8 }} />
-        <motion.path d="M55 58 Q60 55 Q65 58 Q70 55" stroke="#10B981" strokeWidth="1.5" fill="none"
+        <motion.path d="M55 58 Q60 55 Q65 58 Q70 55" stroke="white" strokeWidth="1.5" fill="none"
           initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ delay: 1, duration: 0.5, repeat: Infinity, repeatType: "reverse" }} />
       </svg>
     ),
@@ -173,7 +173,7 @@ export default function AICapabilities() {
           transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
           className="text-center mb-16"
         >
-          <p className="eyebrow text-[#10B981] mb-4">ACCOUNTING INTELLIGENCE</p>
+          <p className="eyebrow text-white/60 mb-4">ACCOUNTING INTELLIGENCE</p>
           <h2 className="font-display text-4xl md:text-5xl lg:text-[56px] text-white leading-[1.1] mb-6">
             AI that <span className="text-gradient-blue">actually understands</span>
             <br />
@@ -199,7 +199,7 @@ export default function AICapabilities() {
               whileHover={{ y: -4, transition: { duration: 0.2 } }}
               className={`relative p-8 rounded-2xl transition-all duration-300 ${
                 capability.accent
-                  ? "bg-gradient-to-br from-[#10B981] to-[#059669] text-white shadow-lg shadow-[#10B981]/20"
+                  ? "bg-gradient-to-br from-[#1A1A1A] to-[#000000] text-white shadow-lg shadow-[#1A1A1A]/20"
                   : "card-dark"
               }`}
             >

@@ -1,0 +1,34 @@
+<svg width="200" height="200" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Entity Logo — Success Animation (green bloom + gentle drift) -->
+  <circle cx="50" cy="50" r="9.5" fill="#5ED4A0" opacity="0.8">
+    <animate attributeName="r" dur="5s" repeatCount="indefinite" calcMode="spline" keySplines="0.25 0.1 0.25 1;0.25 0.1 0.25 1" values="9.5;10;9.5"/>
+  </circle>
+  <circle cx="50" cy="10" r="3.8" fill="#5ED4A0" opacity="0.6">
+    <animate attributeName="cy" dur="6s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1" values="10;8;10"/>
+  </circle>
+  <circle cx="78.3" cy="21.7" r="3.8" fill="#5ED4A0" opacity="0.6">
+    <animate attributeName="cx" dur="6.5s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1" values="78.3;79.7;78.3" begin="0.3s"/>
+    <animate attributeName="cy" dur="6.5s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1" values="21.7;20.3;21.7" begin="0.3s"/>
+  </circle>
+  <circle cx="90" cy="50" r="3.8" fill="#5ED4A0" opacity="0.6">
+    <animate attributeName="cx" dur="5.8s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1" values="90;92;90" begin="0.6s"/>
+  </circle>
+  <circle cx="78.3" cy="78.3" r="3.8" fill="#5ED4A0" opacity="0.6">
+    <animate attributeName="cx" dur="6.2s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1" values="78.3;79.7;78.3" begin="0.15s"/>
+    <animate attributeName="cy" dur="6.2s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1" values="78.3;79.7;78.3" begin="0.15s"/>
+  </circle>
+  <circle cx="50" cy="90" r="3.8" fill="#5ED4A0" opacity="0.6">
+    <animate attributeName="cy" dur="5.5s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1" values="90;92;90" begin="0.45s"/>
+  </circle>
+  <circle cx="21.7" cy="78.3" r="3.8" fill="#5ED4A0" opacity="0.6">
+    <animate attributeName="cx" dur="6.3s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1" values="21.7;20.3;21.7" begin="0.75s"/>
+    <animate attributeName="cy" dur="6.3s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1" values="78.3;79.7;78.3" begin="0.75s"/>
+  </circle>
+  <circle cx="10" cy="50" r="3.8" fill="#5ED4A0" opacity="0.6">
+    <animate attributeName="cx" dur="5.7s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1" values="10;8;10" begin="0.25s"/>
+  </circle>
+  <circle cx="21.7" cy="21.7" r="3.8" fill="#5ED4A0" opacity="0.6">
+    <animate attributeName="cx" dur="6.1s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1" values="21.7;20.3;21.7" begin="0.55s"/>
+    <animate attributeName="cy" dur="6.1s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1" values="21.7;20.3;21.7" begin="0.55s"/>
+  </circle>
+</svg>

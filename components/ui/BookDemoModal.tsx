@@ -41,6 +41,8 @@ export default function BookDemoModal({ isOpen, onClose, variant = "demo" }: Boo
   const [email, setEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [phoneError, setPhoneError] = useState("");
+  const [emailError, setEmailError] = useState("");
 
   const selectedCountry = countryCodes.find((c) => c.code === countryCode) || countryCodes[0];
 
@@ -71,9 +73,41 @@ export default function BookDemoModal({ isOpen, onClose, variant = "demo" }: Boo
     return () => window.removeEventListener("keydown", handleKey);
   }, [isOpen, onClose]);
 
+  const validatePhone = (value: string) => {
+    const digits = value.replace(/\D/g, "");
+    if (digits.length !== 10) {
+      setPhoneError("Enter a valid 10-digit number");
+      return false;
+    }
+    setPhoneError("");
+    return true;
+  };
+
+  const validateEmail = (value: string) => {
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!emailRegex.test(value)) {
+      setEmailError("Enter a valid email address");
+      return false;
+    }
+    // Block disposable/temporary email providers
+    const domain = value.split("@")[1].toLowerCase();
+    const disposable = ["mailinator.com", "guerrillamail.com", "tempmail.com", "throwaway.email", "yopmail.com", "sharklasers.com", "guerrillamailblock.com", "grr.la", "dispostable.com", "trashmail.com", "10minutemail.com", "temp-mail.org", "fakeinbox.com", "maildrop.cc", "getairmail.com"];
+    if (disposable.includes(domain)) {
+      setEmailError("Please use a permanent email address");
+      return false;
+    }
+    setEmailError("");
+    return true;
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!name || !phone || !email) return;
+
+    const phoneValid = validatePhone(phone);
+    const emailValid = validateEmail(email);
+    if (!phoneValid || !emailValid) return;
+
     setIsSubmitting(true);
 
     try {
@@ -103,6 +137,8 @@ export default function BookDemoModal({ isOpen, onClose, variant = "demo" }: Boo
       setName("");
       setPhone("");
       setEmail("");
+      setPhoneError("");
+      setEmailError("");
       setIsSubmitted(false);
     }, 300);
   }, [onClose]);
@@ -148,8 +184,8 @@ export default function BookDemoModal({ isOpen, onClose, variant = "demo" }: Boo
                     transition={{ duration: 0.3 }}
                     className="text-center py-8"
                   >
-                    <div className="w-14 h-14 bg-[#10B981]/10 rounded-full flex items-center justify-center mx-auto mb-5">
-                      <Check className="w-7 h-7 text-[#10B981]" strokeWidth={2.5} />
+                    <div className="w-14 h-14 bg-[#1A1A1A]/10 rounded-full flex items-center justify-center mx-auto mb-5">
+                      <Check className="w-7 h-7 text-[#1A1A1A]" strokeWidth={2.5} />
                     </div>
                     <h3 className="font-display text-[22px] font-bold text-[#1A1A1A] mb-2">
                       Thank you!
@@ -194,7 +230,7 @@ export default function BookDemoModal({ isOpen, onClose, variant = "demo" }: Boo
                           onChange={(e) => setName(e.target.value)}
                           placeholder="Your full name"
                           required
-                          className="w-full px-4 py-3 bg-[#FAFAF8] border border-[#E5E5E0] rounded-xl font-body text-[15px] text-[#1A1A1A] placeholder:text-[#999] focus:outline-none focus:border-[#10B981] focus:ring-1 focus:ring-[#10B981]/20 transition-all"
+                          className="w-full px-4 py-3 bg-[#FAFAF8] border border-[#E5E5E0] rounded-xl font-body text-[15px] text-[#1A1A1A] placeholder:text-[#999] focus:outline-none focus:border-[#1A1A1A] focus:ring-1 focus:ring-[#1A1A1A]/20 transition-all"
                         />
                       </div>
 
@@ -207,7 +243,7 @@ export default function BookDemoModal({ isOpen, onClose, variant = "demo" }: Boo
                           <select
                             value={countryCode}
                             onChange={(e) => setCountryCode(e.target.value)}
-                            className="w-[100px] sm:w-[120px] px-2 sm:px-3 py-3 bg-[#FAFAF8] border border-[#E5E5E0] rounded-xl font-body text-[13px] sm:text-[14px] text-[#1A1A1A] focus:outline-none focus:border-[#10B981] transition-all appearance-none cursor-pointer"
+                            className="w-[100px] sm:w-[120px] px-2 sm:px-3 py-3 bg-[#FAFAF8] border border-[#E5E5E0] rounded-xl font-body text-[13px] sm:text-[14px] text-[#1A1A1A] focus:outline-none focus:border-[#1A1A1A] transition-all appearance-none cursor-pointer"
                           >
                             {countryCodes.map((c) => (
                               <option key={c.code} value={c.code}>
@@ -218,12 +254,19 @@ export default function BookDemoModal({ isOpen, onClose, variant = "demo" }: Boo
                           <input
                             type="tel"
                             value={phone}
-                            onChange={(e) => setPhone(e.target.value)}
+                            onChange={(e) => {
+                              const digits = e.target.value.replace(/\D/g, "").slice(0, 10);
+                              setPhone(digits);
+                              if (phoneError) setPhoneError("");
+                            }}
                             placeholder="Mobile number"
                             required
-                            className="flex-1 px-4 py-3 bg-[#FAFAF8] border border-[#E5E5E0] rounded-xl font-body text-[15px] text-[#1A1A1A] placeholder:text-[#999] focus:outline-none focus:border-[#10B981] focus:ring-1 focus:ring-[#10B981]/20 transition-all"
+                            className={`flex-1 px-4 py-3 bg-[#FAFAF8] border rounded-xl font-body text-[15px] text-[#1A1A1A] placeholder:text-[#999] focus:outline-none focus:ring-1 transition-all ${phoneError ? "border-red-400 focus:border-red-400 focus:ring-red-400/20" : "border-[#E5E5E0] focus:border-[#1A1A1A] focus:ring-[#1A1A1A]/20"}`}
                           />
                         </div>
+                        {phoneError && (
+                          <p className="text-red-500 text-[12px] font-body mt-1">{phoneError}</p>
+                        )}
                       </div>
 
                       {/* Email */}
@@ -234,11 +277,17 @@ export default function BookDemoModal({ isOpen, onClose, variant = "demo" }: Boo
                         <input
                           type="email"
                           value={email}
-                          onChange={(e) => setEmail(e.target.value)}
+                          onChange={(e) => {
+                            setEmail(e.target.value);
+                            if (emailError) setEmailError("");
+                          }}
                           placeholder="you@company.com"
                           required
-                          className="w-full px-4 py-3 bg-[#FAFAF8] border border-[#E5E5E0] rounded-xl font-body text-[15px] text-[#1A1A1A] placeholder:text-[#999] focus:outline-none focus:border-[#10B981] focus:ring-1 focus:ring-[#10B981]/20 transition-all"
+                          className={`w-full px-4 py-3 bg-[#FAFAF8] border rounded-xl font-body text-[15px] text-[#1A1A1A] placeholder:text-[#999] focus:outline-none focus:ring-1 transition-all ${emailError ? "border-red-400 focus:border-red-400 focus:ring-red-400/20" : "border-[#E5E5E0] focus:border-[#1A1A1A] focus:ring-[#1A1A1A]/20"}`}
                         />
+                        {emailError && (
+                          <p className="text-red-500 text-[12px] font-body mt-1">{emailError}</p>
+                        )}
                       </div>
 
                       {/* Submit */}

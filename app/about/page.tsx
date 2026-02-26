@@ -5,7 +5,6 @@ import { useRef } from "react";
 import { ArrowRight } from "lucide-react";
 import AnnouncementBanner from "@/components/sections/AnnouncementBanner";
 import Navigation from "@/components/sections/Navigation";
-import StarField from "@/components/ui/StarField";
 import { EntityMark } from "@/components/entity-mark";
 import { useDemoModal } from "@/components/ui/DemoModalProvider";
 
@@ -69,20 +68,32 @@ const sections = [
 function ManifestoSection({
   heading,
   paragraphs,
+  index,
 }: {
   heading: string;
   paragraphs: string[];
+  index: number;
 }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <div ref={ref} className="py-10 lg:py-14 border-t border-white/5 text-center">
+    <div ref={ref} className="py-12 lg:py-16">
+      {/* Section number */}
+      <motion.p
+        initial={{ opacity: 0 }}
+        animate={isInView ? { opacity: 1 } : {}}
+        transition={{ duration: 0.4 }}
+        className="font-mono text-[12px] text-[#6B6B6B] mb-4"
+      >
+        {String(index + 1).padStart(2, "0")}
+      </motion.p>
+
       <motion.h2
         initial={{ opacity: 0, y: 20 }}
         animate={isInView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.6 }}
-        className="font-display text-[20px] sm:text-[24px] md:text-[28px] lg:text-[32px] font-bold text-white leading-[1.2] tracking-[-0.01em] mb-5"
+        className="font-display text-[22px] sm:text-[26px] md:text-[30px] lg:text-[34px] font-bold text-[#1A1A1A] leading-[1.2] tracking-[-0.01em] mb-6"
       >
         {heading}
       </motion.h2>
@@ -90,7 +101,7 @@ function ManifestoSection({
         initial={{ opacity: 0, y: 20 }}
         animate={isInView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.6, delay: 0.15 }}
-        className="space-y-5 text-[16px] text-white/45 leading-[1.8] font-body max-w-[600px] mx-auto"
+        className="space-y-5 text-[16px] text-[#6B6B6B] leading-[1.8] font-body"
       >
         {paragraphs.map((p, i) => (
           <p key={i}>{p}</p>
@@ -106,91 +117,102 @@ export default function AboutPage() {
   const { openModal } = useDemoModal();
 
   return (
-    <main className="overflow-x-hidden bg-[#0A0A0A]">
+    <main className="overflow-x-hidden bg-[#FAFAF8]">
       <AnnouncementBanner />
       <Navigation />
 
-      <section className="relative cosmos-bg overflow-hidden" ref={heroRef}>
-        <StarField starCount={100} />
-
-        <div className="container-narrow px-5 sm:px-6 lg:px-8 relative z-10">
-          {/* Hero */}
-          <div className="py-14 lg:py-20 text-center">
-            <motion.p
-              initial={{ opacity: 0, y: 10 }}
-              animate={heroInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.4 }}
-              className="text-[12px] font-body font-medium uppercase tracking-[3px] text-white/30 mb-6"
-            >
-              MANIFESTO
-            </motion.p>
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={heroInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="font-display text-[26px] sm:text-[32px] md:text-[40px] lg:text-[48px] font-bold text-white leading-[1.15] tracking-[-0.02em] mb-6"
-            >
-              The accounting tool that finally{" "}
-              <span className="text-gradient">does the accounting.</span>
-            </motion.h1>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={heroInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="font-body text-[16px] text-white/40 leading-relaxed max-w-[520px] mx-auto"
-            >
-              Why we started Entity, what we believe, and where we&apos;re going.
-            </motion.p>
-          </div>
-
-          {/* Manifesto sections */}
-          {sections.map((section, i) => (
-            <ManifestoSection
-              key={i}
-              heading={section.heading}
-              paragraphs={section.paragraphs}
-            />
-          ))}
-
-          {/* Closing CTA */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.6 }}
-            className="py-14 lg:py-20 border-t border-white/5 text-center"
+      {/* Hero */}
+      <section
+        className="relative bg-[#FAFAF8] border-b border-[#E5E5E0]"
+        ref={heroRef}
+      >
+        <div className="container-narrow px-5 sm:px-6 lg:px-8 pt-12 lg:pt-20 pb-12 lg:pb-16 text-center">
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            animate={heroInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.4 }}
+            className="eyebrow text-[#999999] mb-5"
           >
-            <h2 className="font-display text-[20px] sm:text-[24px] md:text-[28px] lg:text-[32px] font-bold text-white leading-[1.2] tracking-[-0.01em] mb-3">
-              Entity
-            </h2>
-            <p className="font-display text-[18px] md:text-[20px] italic text-white/30 mb-10">
-              The accounting tool that finally does the accounting.
-            </p>
-            <button
-              onClick={() => openModal("demo")}
-              className="inline-flex items-center gap-3 px-8 py-3.5 border border-white/25 rounded-xl text-white text-[15px] font-body font-medium hover:bg-white hover:text-[#0A0A0A] transition-all duration-300"
-            >
-              Book a demo
-              <ArrowRight className="w-5 h-5" />
-            </button>
-          </motion.div>
+            MANIFESTO
+          </motion.p>
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={heroInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="font-display text-[28px] sm:text-[36px] md:text-[44px] lg:text-[52px] font-bold text-[#1A1A1A] leading-[1.12] tracking-[-0.02em] mb-6"
+          >
+            The accounting tool that finally{" "}
+            <span className="text-gradient">does the accounting.</span>
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={heroInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="font-body text-[16px] text-[#6B6B6B] leading-relaxed max-w-[520px] mx-auto"
+          >
+            Why we started Entity, what we believe, and where we&apos;re going.
+          </motion.p>
         </div>
       </section>
 
+      {/* Manifesto sections */}
+      <section className="bg-white border-b border-[#E5E5E0]">
+        <div className="container-narrow px-5 sm:px-6 lg:px-8">
+          {sections.map((section, i) => (
+            <div key={i}>
+              {i > 0 && <div className="divider-line" />}
+              <ManifestoSection
+                heading={section.heading}
+                paragraphs={section.paragraphs}
+                index={i}
+              />
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Closing CTA */}
+      <section className="bg-[#FAFAF8] border-b border-[#E5E5E0]">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.6 }}
+          className="container-narrow px-5 sm:px-6 lg:px-8 py-16 lg:py-24 text-center"
+        >
+          <div className="divider-green mb-10" />
+          <h2 className="font-display text-[26px] sm:text-[32px] md:text-[40px] lg:text-[48px] font-bold text-[#1A1A1A] leading-[1.15] tracking-[-0.02em] mb-3">
+            Entity
+          </h2>
+          <p className="font-display text-[18px] md:text-[20px] italic text-[#999999] mb-10">
+            The accounting tool that finally does the accounting.
+          </p>
+          <motion.button
+            onClick={() => openModal("demo")}
+            className="inline-flex items-center gap-3 px-8 py-3.5 bg-[#1A1A1A] text-white font-body font-medium text-[15px] rounded-xl tracking-[-0.01em] shadow-[0_2px_8px_rgba(0,0,0,0.12)]"
+            whileHover={{ scale: 1.02, backgroundColor: "#2A2A2A" }}
+            whileTap={{ scale: 0.98 }}
+          >
+            Book a demo
+            <ArrowRight className="w-5 h-5" />
+          </motion.button>
+        </motion.div>
+      </section>
+
       {/* Footer */}
-      <footer className="bg-[#0A0A0A] border-t border-white/5 py-8">
+      <footer className="bg-white border-t border-[#E5E5E0] py-8">
         <div className="container-content px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2">
-            <EntityMark size={24} state="idle" theme="dark" />
-            <span className="font-body font-bold text-[15px] text-white tracking-tight">
+            <EntityMark size={24} state="idle" theme="light" />
+            <span className="font-body font-bold text-[15px] text-[#1A1A1A] tracking-tight">
               Entity
             </span>
           </div>
-          <div className="flex items-center gap-6 text-[13px] text-white/35 font-body">
-            <a href="/terms" className="hover:text-white/60 transition-colors underline underline-offset-2">
+          <div className="flex items-center gap-6 text-[13px] text-[#999999] font-body">
+            <a href="/terms" className="hover:text-[#6B6B6B] transition-colors underline underline-offset-2">
               Terms of Service
             </a>
-            <a href="/privacy" className="hover:text-white/60 transition-colors underline underline-offset-2">
+            <a href="/privacy" className="hover:text-[#6B6B6B] transition-colors underline underline-offset-2">
               Privacy Policy
             </a>
             <span>&copy; Entity 2026</span>

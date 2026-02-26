@@ -12,9 +12,9 @@
   --color-text-secondary: #6B6B6B;
   --color-text-muted: #999999;
 
-  --color-accent: #10B981;
-  --color-accent-hover: #059669;
-  --color-accent-light: #D1FAE5;
+  --color-accent: #1A1A1A;
+  --color-accent-hover: #000000;
+  --color-accent-light: #E5E5E0;
 
   --color-border-light: #E5E5E0;
   --color-border-dark: #222222;
@@ -49,7 +49,7 @@
   /* Shadows */
   --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.06);
   --shadow-card-hover: 0 12px 40px rgba(0, 0, 0, 0.1);
-  --shadow-button: 0 4px 12px rgba(16, 185, 129, 0.25);
+  --shadow-button: 0 4px 12px rgba(0, 0, 0, 0.15);
   --shadow-screenshot: 0 24px 80px rgba(0, 0, 0, 0.15);
 
   /* Animations */
@@ -68,8 +68,8 @@
 }
 
 @keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 20px rgba(16, 185, 129, 0.3); }
-  50% { box-shadow: 0 0 40px rgba(16, 185, 129, 0.5); }
+  0%, 100% { box-shadow: 0 0 20px rgba(0, 0, 0, 0.15); }
+  50% { box-shadow: 0 0 40px rgba(0, 0, 0, 0.25); }
 }
 
 @keyframes rotate-slow {
@@ -118,12 +118,10 @@
 }
 
 .text-gradient {
-  background: linear-gradient(135deg, #10B981, #34D399, #059669, #10B981);
-  background-size: 300% 300%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: gradient-shift 6s ease infinite;
+  color: inherit;
+  -webkit-text-fill-color: inherit;
+  font-style: italic;
+  font-weight: 700;
 }
 
 .text-gradient-blue {
@@ -133,6 +131,8 @@
   -webkit-text-fill-color: transparent;
   background-clip: text;
   animation: gradient-shift 6s ease infinite;
+  font-style: italic;
+  font-weight: 700;
 }
 
 .text-gradient-purple {
@@ -142,15 +142,15 @@
   -webkit-text-fill-color: transparent;
   background-clip: text;
   animation: gradient-shift 6s ease infinite;
+  font-style: italic;
+  font-weight: 700;
 }
 
 .text-gradient-light {
-  background: linear-gradient(135deg, #34D399, #6EE7B7, #10B981, #34D399);
-  background-size: 300% 300%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: gradient-shift 6s ease infinite;
+  color: inherit;
+  -webkit-text-fill-color: inherit;
+  font-style: italic;
+  font-weight: 700;
 }
 
 /* === BASE === */
@@ -172,7 +172,7 @@ body {
 }
 
 ::selection {
-  background: rgba(16, 185, 129, 0.2);
+  background: rgba(0, 0, 0, 0.12);
   color: #1A1A1A;
 }
 
@@ -241,22 +241,22 @@ body {
   justify-content: center;
   gap: 8px;
   padding: 14px 32px;
-  background: #10B981;
+  background: #1A1A1A;
   color: white;
   font-family: var(--font-inter), sans-serif;
   font-weight: 600;
   font-size: 16px;
-  border: 2px solid #059669;
+  border: 2px solid #000000;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   transition: all 0.2s ease;
   cursor: pointer;
 }
 
 .btn-primary:hover {
-  background: #059669;
+  background: #000000;
   transform: scale(1.02);
-  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.35);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
 }
 
 .btn-secondary {
@@ -306,7 +306,7 @@ body {
   background:
     radial-gradient(ellipse at 20% 20%, rgba(124, 58, 237, 0.06) 0%, transparent 50%),
     radial-gradient(ellipse at 80% 80%, rgba(59, 130, 246, 0.04) 0%, transparent 50%),
-    radial-gradient(ellipse at 50% 50%, rgba(16, 185, 129, 0.03) 0%, transparent 60%);
+    radial-gradient(ellipse at 50% 50%, rgba(0, 0, 0, 0.02) 0%, transparent 60%);
   pointer-events: none;
 }
 
@@ -327,7 +327,7 @@ body {
   display: inline-block;
   padding: 12px 20px;
   background: #F2F2ED;
-  border-left: 3px solid #10B981;
+  border-left: 3px solid #1A1A1A;
   border-radius: 8px;
   font-family: var(--font-chivo-mono), monospace;
   font-size: 13px;
@@ -336,13 +336,13 @@ body {
 
 /* Link styles */
 .link-accent {
-  color: #10B981;
+  color: #1A1A1A;
   font-weight: 500;
   transition: color 0.2s;
 }
 
 .link-accent:hover {
-  color: #059669;
+  color: #000000;
 }
 
 /* Divider */
@@ -356,7 +356,7 @@ body {
 .divider-green {
   width: 80px;
   height: 2px;
-  background: #10B981;
+  background: #1A1A1A;
   margin: 0 auto;
 }
 
@@ -388,8 +388,8 @@ body {
 
 .input-field:focus {
   outline: none;
-  border-color: #10B981;
-  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+  border-color: #1A1A1A;
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.08);
 }
 
 .input-field::placeholder {
@@ -410,7 +410,7 @@ body {
 
 .input-field-dark:focus {
   outline: none;
-  border-color: #10B981;
+  border-color: #FFFFFF;
   background: rgba(255, 255, 255, 0.08);
 }
 

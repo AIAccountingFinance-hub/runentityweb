@@ -23,7 +23,7 @@ export default function DemoVideo() {
         {/* Header */}
         <div className="mb-8 text-center">
           <h2 className="font-display text-[26px] sm:text-[32px] md:text-[40px] lg:text-[48px] font-bold text-[#1A1A1A] leading-[1.15] tracking-[-0.02em] mb-3">
-            See Entity in <span className="italic text-gradient">action.</span>
+            See Entity in <span className="text-gradient">action.</span>
           </h2>
           <p className="text-[#6B6B6B] text-[16px] font-body leading-relaxed">
             One example of an accounting workflow possible on Entity.

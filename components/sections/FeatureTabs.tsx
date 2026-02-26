@@ -107,8 +107,8 @@ function RecordVisual() {
         className="absolute left-[22%] top-[4%] w-[280px] bg-white rounded-xl border border-[#E5E5E0] shadow-lg p-5"
       >
         <div className="flex items-center gap-2 mb-4">
-          <div className="w-6 h-6 rounded bg-[#10B981]/10 flex items-center justify-center">
-            <FileText className="w-3.5 h-3.5 text-[#10B981]" />
+          <div className="w-6 h-6 rounded bg-[#1A1A1A]/10 flex items-center justify-center">
+            <FileText className="w-3.5 h-3.5 text-[#1A1A1A]" />
           </div>
           <span className="text-[13px] font-semibold text-[#1A1A1A]">Anthropic</span>
         </div>
@@ -152,36 +152,36 @@ function RecordVisual() {
         className="absolute right-[14%] top-[18%] w-[260px] bg-[#0A0A0A] rounded-xl shadow-2xl p-4 text-white"
       >
         <div className="flex items-center gap-2 mb-3">
-          <Sparkles className="w-4 h-4 text-[#10B981]" />
-          <span className="text-[12px] font-semibold text-[#10B981]">AI Extracted</span>
-          <span className="ml-auto text-[10px] px-2 py-0.5 bg-[#10B981]/20 text-[#10B981] rounded-full font-mono">94%</span>
+          <Sparkles className="w-4 h-4 text-white" />
+          <span className="text-[12px] font-semibold text-white">AI Extracted</span>
+          <span className="ml-auto text-[10px] px-2 py-0.5 bg-white/20 text-white rounded-full font-mono">94%</span>
         </div>
         <div className="space-y-2.5 text-[11px]">
           <div className="flex items-center gap-2">
-            <Check className="w-3.5 h-3.5 text-[#10B981]" strokeWidth={3} />
+            <Check className="w-3.5 h-3.5 text-white" strokeWidth={3} />
             <span className="text-white/60">Vendor:</span>
             <span className="text-white font-medium">Anthropic</span>
           </div>
           <div className="flex items-center gap-2">
-            <Check className="w-3.5 h-3.5 text-[#10B981]" strokeWidth={3} />
+            <Check className="w-3.5 h-3.5 text-white" strokeWidth={3} />
             <span className="text-white/60">Account:</span>
             <span className="text-white font-medium">Raw Materials</span>
           </div>
           <div className="flex items-center gap-2">
-            <Check className="w-3.5 h-3.5 text-[#10B981]" strokeWidth={3} />
+            <Check className="w-3.5 h-3.5 text-white" strokeWidth={3} />
             <span className="text-white/60">GST:</span>
             <span className="text-white font-medium">18% (CGST + SGST)</span>
           </div>
           <div className="flex items-center gap-2">
-            <Check className="w-3.5 h-3.5 text-[#10B981]" strokeWidth={3} />
+            <Check className="w-3.5 h-3.5 text-white" strokeWidth={3} />
             <span className="text-white/60">TDS:</span>
             <span className="text-white font-medium">Not applicable</span>
           </div>
         </div>
         <div className="mt-3 pt-3 border-t border-white/10 flex items-center gap-2 text-[11px]">
           <span className="text-white/40">Journal entry ready</span>
-          <ArrowRight className="w-3 h-3 text-[#10B981] ml-auto" />
-          <span className="text-[#10B981] font-medium">Post</span>
+          <ArrowRight className="w-3 h-3 text-white ml-auto" />
+          <span className="text-white font-medium">Post</span>
         </div>
       </motion.div>
 
@@ -226,9 +226,9 @@ function ReconcileVisual() {
             <div key={row.date + row.desc} className="flex items-center py-1.5 border-b border-[#F2F2ED] last:border-0 text-[11px]">
               <span className="text-[#999] w-12 shrink-0 font-mono">{row.date}</span>
               <span className="text-[#1A1A1A] flex-1 truncate">{row.desc}</span>
-              <span className={`font-mono ml-2 ${row.amt.startsWith("+") ? "text-[#10B981]" : "text-[#1A1A1A]"}`}>{row.amt}</span>
+              <span className={`font-mono ml-2 ${row.amt.startsWith("+") ? "text-[#1A1A1A]" : "text-[#1A1A1A]"}`}>{row.amt}</span>
               {row.matched ? (
-                <Check className="w-3 h-3 text-[#10B981] ml-1.5 shrink-0" strokeWidth={3} />
+                <Check className="w-3 h-3 text-[#1A1A1A] ml-1.5 shrink-0" strokeWidth={3} />
               ) : (
                 <div className="w-3 h-3 rounded-full border-2 border-[#F59E0B] ml-1.5 shrink-0" />
               )}
@@ -249,7 +249,7 @@ function ReconcileVisual() {
             <p className="text-[14px] font-semibold">GST Return — GSTR-3B</p>
             <p className="text-[11px] text-white/40">February 2026</p>
           </div>
-          <span className="px-2 py-0.5 bg-[#10B981]/20 text-[#10B981] text-[10px] font-mono rounded-full">Auto-drafted</span>
+          <span className="px-2 py-0.5 bg-white/20 text-white text-[10px] font-mono rounded-full">Auto-drafted</span>
         </div>
         <div className="space-y-2 text-[11px]">
           <div className="flex justify-between">
@@ -258,7 +258,7 @@ function ReconcileVisual() {
           </div>
           <div className="flex justify-between">
             <span className="text-white/50">Input GST</span>
-            <span className="font-mono text-[#10B981]">₹2,89,650</span>
+            <span className="font-mono text-white">₹2,89,650</span>
           </div>
           <div className="border-t border-white/10 pt-2 flex justify-between font-semibold">
             <span className="text-white/70">Net Payable</span>
@@ -289,15 +289,15 @@ function ReconcileVisual() {
           ].map((r) => (
             <div key={r.name} className="flex items-center justify-between">
               <span className="text-[#6B6B6B]">{r.name}</span>
-              <span className={`font-mono ${r.dr ? "text-[#10B981]" : "text-[#3B82F6]"}`}>
+              <span className={`font-mono ${r.dr ? "text-[#1A1A1A]" : "text-[#3B82F6]"}`}>
                 {r.dr || r.cr}
               </span>
             </div>
           ))}
         </div>
         <div className="mt-2 pt-2 border-t border-[#E5E5E0] flex items-center gap-1">
-          <Check className="w-3 h-3 text-[#10B981]" strokeWidth={3} />
-          <span className="text-[10px] text-[#10B981] font-medium">Balanced</span>
+          <Check className="w-3 h-3 text-[#1A1A1A]" strokeWidth={3} />
+          <span className="text-[10px] text-[#1A1A1A] font-medium">Balanced</span>
           <span className="text-[9px] text-[#999] ml-auto font-mono">42ms</span>
         </div>
       </motion.div>
@@ -368,7 +368,7 @@ function ReviewVisual() {
             <p className="text-[14px] font-semibold">Month-End Close</p>
             <p className="text-[11px] text-white/40">February 2026</p>
           </div>
-          <span className="px-2 py-0.5 bg-[#10B981]/20 text-[#10B981] text-[10px] font-mono rounded-full">6 of 8 done</span>
+          <span className="px-2 py-0.5 bg-white/20 text-white text-[10px] font-mono rounded-full">6 of 8 done</span>
         </div>
         <div className="space-y-2 text-[11px]">
           {[
@@ -383,7 +383,7 @@ function ReviewVisual() {
           ].map((item) => (
             <div key={item.task} className="flex items-center gap-2">
               {item.done ? (
-                <Check className="w-3.5 h-3.5 text-[#10B981] shrink-0" strokeWidth={3} />
+                <Check className="w-3.5 h-3.5 text-white shrink-0" strokeWidth={3} />
               ) : (
                 <div className="w-3.5 h-3.5 rounded-full border border-white/20 shrink-0" />
               )}
@@ -401,7 +401,7 @@ function ReviewVisual() {
         className="absolute right-[6%] top-[25%] w-[180px] bg-white rounded-xl border border-[#E5E5E0] shadow-lg p-4"
       >
         <div className="flex items-center gap-2 mb-3">
-          <CalendarCheck className="w-4 h-4 text-[#10B981]" />
+          <CalendarCheck className="w-4 h-4 text-[#1A1A1A]" />
           <span className="text-[12px] font-semibold text-[#1A1A1A]">Auto Posted</span>
         </div>
         <div className="space-y-2 text-[10px]">

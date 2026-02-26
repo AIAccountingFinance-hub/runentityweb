@@ -354,20 +354,12 @@ const benefits: { shape: StippleShape; title: string; description: string }[] = 
   },
 ];
 
-const steps = [
-  { number: "01", title: "Apply", description: "Fill out a short form. We review every application within 48 hours." },
-  { number: "02", title: "Onboard", description: "Get a dedicated partner dashboard, training, and your first client migrated free." },
-  { number: "03", title: "Grow", description: "Manage all your clients from one dashboard. Earn as your portfolio grows." },
-];
-
 export default function PartnersPage() {
   const { openModal } = useDemoModal();
   const heroRef = useRef(null);
   const benefitsRef = useRef(null);
-  const stepsRef = useRef(null);
   const heroInView = useInView(heroRef, { once: true, margin: "-50px" });
   const benefitsInView = useInView(benefitsRef, { once: true, margin: "-80px" });
-  const stepsInView = useInView(stepsRef, { once: true, margin: "-80px" });
 
   return (
     <main className="overflow-x-hidden">
@@ -469,61 +461,6 @@ export default function PartnersPage() {
               </motion.div>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* How it works */}
-      <section
-        className="bg-white py-14 lg:py-20 border-t border-[#E5E5E0]"
-        ref={stepsRef}
-      >
-        <div className="container-content px-6 lg:px-8">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            animate={stepsInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5 }}
-            className="font-display text-[26px] sm:text-[32px] md:text-[40px] lg:text-[48px] font-bold text-[#1A1A1A] text-center leading-[1.15] tracking-[-0.02em] mb-12"
-          >
-            How it works
-          </motion.h2>
-
-          <div className="grid md:grid-cols-3 gap-10 max-w-3xl mx-auto">
-            {steps.map((step, i) => (
-              <motion.div
-                key={step.number}
-                initial={{ opacity: 0, y: 20 }}
-                animate={stepsInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: 0.1 + i * 0.1 }}
-                className="text-center"
-              >
-                <span className="font-mono text-[40px] font-bold text-[#1A1A1A]/8 block mb-2">
-                  {step.number}
-                </span>
-                <h3 className="font-display text-[17px] font-semibold text-[#1A1A1A] mb-2">
-                  {step.title}
-                </h3>
-                <p className="font-body text-[15px] text-[#6B6B6B] leading-relaxed">
-                  {step.description}
-                </p>
-              </motion.div>
-            ))}
-          </div>
-
-          {/* CTA */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={stepsInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5, delay: 0.5 }}
-            className="text-center mt-10"
-          >
-            <button
-              onClick={() => openModal("partner")}
-              className="inline-flex items-center gap-3 px-8 py-3.5 bg-[#1A1A1A] text-white text-[15px] font-body font-medium rounded-xl shadow-[0_2px_8px_rgba(0,0,0,0.12)] hover:bg-[#2A2A2A] transition-all duration-300"
-            >
-              Become a Partner
-              <ArrowRight className="w-5 h-5" />
-            </button>
-          </motion.div>
         </div>
       </section>
 

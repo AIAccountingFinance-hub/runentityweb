@@ -55,7 +55,7 @@ export default function VideoTeaser() {
                       <div className="h-8 bg-white/10 rounded-lg" />
                       <div className="h-6 bg-white/5 rounded" />
                       <div className="h-6 bg-white/5 rounded" />
-                      <div className="h-6 bg-[#10B981]/20 rounded" />
+                      <div className="h-6 bg-white/20 rounded" />
                       <div className="h-6 bg-white/5 rounded" />
                     </div>
                     {/* Main content mockup */}
@@ -78,7 +78,7 @@ export default function VideoTeaser() {
               <div
                 className="absolute inset-0 pointer-events-none"
                 style={{
-                  background: "radial-gradient(ellipse at 30% 30%, rgba(16, 185, 129, 0.05) 0%, transparent 50%), radial-gradient(ellipse at 70% 70%, rgba(59, 130, 246, 0.03) 0%, transparent 50%)"
+                  background: "radial-gradient(ellipse at 30% 30%, rgba(255, 255, 255, 0.03) 0%, transparent 50%), radial-gradient(ellipse at 70% 70%, rgba(59, 130, 246, 0.03) 0%, transparent 50%)"
                 }}
               />
             </div>
@@ -90,7 +90,7 @@ export default function VideoTeaser() {
                 transition={{ duration: 0.3 }}
                 className={`w-20 h-20 rounded-full flex items-center justify-center transition-all duration-300 ${
                   isHovered
-                    ? "bg-[#10B981] shadow-lg shadow-[#10B981]/30"
+                    ? "bg-[#1A1A1A] shadow-lg shadow-[#1A1A1A]/30"
                     : "bg-white shadow-2xl"
                 }`}
               >
