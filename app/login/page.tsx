@@ -2,7 +2,7 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { EntityMark } from "@/components/entity-mark";
-import StarField from "@/components/ui/StarField";
+import StippleBackground from "@/components/ui/StippleBackground";
 import { ArrowLeft, ArrowRight, Eye, EyeOff } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -50,7 +50,7 @@ const fadeUp = {
   transition: { duration: 0.35, ease: [0.22, 1, 0.36, 1] as const },
 };
 
-// ── Input component (dark theme) ──
+// ── Input component ──
 
 function Input({
   label,
@@ -62,18 +62,18 @@ function Input({
 } & React.InputHTMLAttributes<HTMLInputElement>) {
   return (
     <div>
-      <label className="text-[13px] font-medium text-[#CCCCCC] block mb-1.5">
+      <label className="font-body text-[13px] font-medium text-[#1A1A1A] block mb-1.5">
         {label}
       </label>
       <input
         {...props}
-        className={`w-full px-4 py-3 bg-white/[0.05] border rounded-xl text-[15px] text-white placeholder:text-[#666] focus:outline-none focus:ring-1 transition-all ${
+        className={`w-full px-4 py-3 bg-[#FAFAF8] border rounded-xl font-body text-[15px] text-[#1A1A1A] placeholder:text-[#999] focus:outline-none focus:ring-1 transition-all ${
           error
-            ? "border-red-400/60 focus:border-red-400 focus:ring-red-400/20"
-            : "border-white/10 focus:border-white/30 focus:ring-white/10"
+            ? "border-red-400 focus:border-red-400 focus:ring-red-400/20"
+            : "border-[#E5E5E0] focus:border-[#1A1A1A] focus:ring-[#1A1A1A]/20"
         }`}
       />
-      {error && <p className="text-red-400 text-[12px] mt-1">{error}</p>}
+      {error && <p className="text-red-500 text-[12px] mt-1">{error}</p>}
     </div>
   );
 }
@@ -91,28 +91,28 @@ function PasswordInput({
   const [show, setShow] = useState(false);
   return (
     <div>
-      <label className="text-[13px] font-medium text-[#CCCCCC] block mb-1.5">
+      <label className="font-body text-[13px] font-medium text-[#1A1A1A] block mb-1.5">
         {label}
       </label>
       <div className="relative">
         <input
           {...props}
           type={show ? "text" : "password"}
-          className={`w-full px-4 py-3 pr-11 bg-white/[0.05] border rounded-xl text-[15px] text-white placeholder:text-[#666] focus:outline-none focus:ring-1 transition-all ${
+          className={`w-full px-4 py-3 pr-11 bg-[#FAFAF8] border rounded-xl font-body text-[15px] text-[#1A1A1A] placeholder:text-[#999] focus:outline-none focus:ring-1 transition-all ${
             error
-              ? "border-red-400/60 focus:border-red-400 focus:ring-red-400/20"
-              : "border-white/10 focus:border-white/30 focus:ring-white/10"
+              ? "border-red-400 focus:border-red-400 focus:ring-red-400/20"
+              : "border-[#E5E5E0] focus:border-[#1A1A1A] focus:ring-[#1A1A1A]/20"
           }`}
         />
         <button
           type="button"
           onClick={() => setShow(!show)}
-          className="absolute right-3 top-1/2 -translate-y-1/2 text-[#666] hover:text-white transition-colors"
+          className="absolute right-3 top-1/2 -translate-y-1/2 text-[#999] hover:text-[#1A1A1A] transition-colors"
         >
           {show ? <EyeOff size={16} /> : <Eye size={16} />}
         </button>
       </div>
-      {error && <p className="text-red-400 text-[12px] mt-1">{error}</p>}
+      {error && <p className="text-red-500 text-[12px] mt-1">{error}</p>}
     </div>
   );
 }
@@ -124,12 +124,12 @@ function Spinner() {
     <motion.div
       animate={{ rotate: 360 }}
       transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-      className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full"
+      className="w-5 h-5 border-2 border-[#1A1A1A]/20 border-t-[#1A1A1A] rounded-full"
     />
   );
 }
 
-// ── Main Login Page (wrapped in Suspense for useSearchParams) ──
+// ── Main Login Page ──
 
 function LoginContent() {
   const router = useRouter();
@@ -246,327 +246,320 @@ function LoginContent() {
   };
 
   return (
-    <div className="relative min-h-dvh bg-[#0A0A0A] flex items-center justify-center overflow-hidden">
-      <StarField starCount={80} className="opacity-50" />
+    <div className="relative min-h-dvh bg-[#FAFAF8] flex items-center justify-center overflow-hidden">
+      {/* Stipple background */}
+      <div className="absolute inset-0 pointer-events-none">
+        <StippleBackground />
+        <div className="absolute top-0 left-0 right-0 h-40 bg-gradient-to-b from-[#FAFAF8] via-[#FAFAF8]/80 to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#FAFAF8] via-[#FAFAF8]/80 to-transparent" />
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(ellipse 60% 50% at 50% 50%, rgba(250,250,248,0.9) 0%, rgba(250,250,248,0) 100%)",
+          }}
+        />
+      </div>
 
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(ellipse 60% 40% at 50% 40%, rgba(150,106,248,0.06) 0%, transparent 70%)",
-        }}
-      />
-
-      <div className="relative z-10 flex flex-col items-center px-6 w-full max-w-sm">
-        {/* Logo — always visible */}
-        <motion.div
-          initial={{ scale: 0.8, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
+      <div className="relative z-10 flex flex-col items-center px-5 w-full max-w-[400px]">
+        {/* Logo */}
+        <motion.a
+          href="https://www.runentity.com"
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
+          className="flex items-center gap-2 mb-10"
         >
-          <EntityMark size={56} state="idle" theme="dark" />
-        </motion.div>
+          <EntityMark size={42} state="idle" theme="light" />
+          <span className="font-body font-bold text-[22px] text-[#1A1A1A] tracking-tight">
+            Entity
+          </span>
+        </motion.a>
 
-        {/* Views */}
-        <AnimatePresence mode="wait">
-          {/* ── User Selector (macOS-style) ── */}
-          {view === "selector" && (
-            <motion.div
-              key="selector"
-              {...fadeUp}
-              className="mt-8 flex flex-col items-center w-full"
-            >
-              <h1
-                className="text-xl font-semibold text-white text-center"
-                style={{ fontFamily: "var(--font-manrope), sans-serif" }}
+        {/* Card */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.15 }}
+          className="w-full bg-white border border-[#E5E5E0] rounded-2xl shadow-[0_4px_24px_rgba(0,0,0,0.06)] p-6 sm:p-8"
+        >
+          <AnimatePresence mode="wait">
+            {/* ── User Selector (macOS-style) ── */}
+            {view === "selector" && (
+              <motion.div
+                key="selector"
+                {...fadeUp}
+                className="flex flex-col items-center"
               >
-                Welcome back
-              </h1>
+                <h1 className="font-display text-[22px] font-bold text-[#1A1A1A] mb-1">
+                  Welcome back
+                </h1>
+                <p className="font-body text-[14px] text-[#6B6B6B] mb-8">
+                  Choose an account to sign in
+                </p>
 
-              <div className="mt-8 flex gap-6 justify-center flex-wrap">
-                {rememberedUsers.map((user) => (
-                  <button
-                    key={user.email}
-                    onClick={() => selectUser(user)}
-                    className="group flex flex-col items-center gap-2 transition-all duration-200"
-                  >
-                    <div className="w-14 h-14 rounded-full bg-white/10 border border-white/20 flex items-center justify-center transition-all duration-200 group-hover:bg-white/15 group-hover:border-white/30 group-hover:scale-105">
-                      <span
-                        className="text-lg font-semibold text-white"
-                        style={{
-                          fontFamily: "var(--font-manrope), sans-serif",
-                        }}
-                      >
-                        {user.avatarInitial}
+                <div className="flex gap-6 justify-center flex-wrap">
+                  {rememberedUsers.map((user) => (
+                    <button
+                      key={user.email}
+                      onClick={() => selectUser(user)}
+                      className="group flex flex-col items-center gap-2 transition-all duration-200"
+                    >
+                      <div className="w-14 h-14 rounded-full bg-[#F2F2ED] border-2 border-[#E5E5E0] flex items-center justify-center transition-all duration-200 group-hover:border-[#1A1A1A] group-hover:scale-105 group-hover:shadow-[0_4px_12px_rgba(0,0,0,0.1)]">
+                        <span className="font-display text-lg font-bold text-[#1A1A1A]">
+                          {user.avatarInitial}
+                        </span>
+                      </div>
+                      <span className="font-body text-xs text-[#6B6B6B] group-hover:text-[#1A1A1A] transition-colors max-w-[80px] truncate">
+                        {user.fullName}
                       </span>
-                    </div>
-                    <span className="text-xs text-[#999] group-hover:text-white transition-colors max-w-[80px] truncate">
-                      {user.fullName}
-                    </span>
-                  </button>
-                ))}
-              </div>
+                    </button>
+                  ))}
+                </div>
 
-              <button
-                onClick={switchToSignIn}
-                className="mt-8 text-sm text-[#666] hover:text-white transition-colors"
-              >
-                Use a different account
-              </button>
-
-              <div className="mt-6 flex flex-col items-center gap-3">
-                <div className="w-12 h-px bg-white/10" />
-                <button
-                  onClick={switchToSignUp}
-                  className="text-sm text-[#666] hover:text-white transition-colors"
-                >
-                  Create an account
-                </button>
-              </div>
-            </motion.div>
-          )}
-
-          {/* ── Sign In Form ── */}
-          {view === "signin" && (
-            <motion.div
-              key="signin"
-              {...fadeUp}
-              className="mt-8 flex flex-col items-center w-full"
-            >
-              <h1
-                className="text-xl font-semibold text-white text-center"
-                style={{ fontFamily: "var(--font-manrope), sans-serif" }}
-              >
-                Sign in to{" "}
-                <span className="text-gradient-purple inline-block">
-                  Entity
-                </span>
-              </h1>
-              <p className="mt-2 text-sm text-[#999] text-center">
-                AI-native accounting platform
-              </p>
-
-              <form
-                onSubmit={handleSignIn}
-                className="mt-8 w-full space-y-4"
-              >
-                <Input
-                  label="Email"
-                  type="email"
-                  value={email}
-                  onChange={(e) => {
-                    setEmail(e.target.value);
-                    setError("");
-                  }}
-                  placeholder="you@company.com"
-                  required
-                  autoFocus={!email}
-                />
-
-                <PasswordInput
-                  label="Password"
-                  value={password}
-                  onChange={(e) => {
-                    setPassword(e.target.value);
-                    setError("");
-                  }}
-                  placeholder="Enter your password"
-                  required
-                  autoFocus={!!email}
-                />
-
-                {error && (
-                  <p className="text-red-400 text-sm text-center">{error}</p>
-                )}
-
-                <button
-                  type="submit"
-                  disabled={loading}
-                  className="group flex items-center justify-center gap-2 w-full py-3.5 px-6 rounded-xl text-sm font-medium text-[#0A0A0A] bg-white transition-all duration-200 hover:shadow-[0_0_40px_rgba(150,106,248,0.2)] hover:scale-[1.02] active:scale-[0.98] disabled:opacity-60 disabled:hover:scale-100"
-                >
-                  {loading ? (
-                    <Spinner />
-                  ) : (
-                    <>
-                      Sign In
-                      <ArrowRight
-                        size={16}
-                        className="transition-transform duration-200 group-hover:translate-x-0.5"
-                      />
-                    </>
-                  )}
-                </button>
-              </form>
-
-              <div className="mt-6 flex flex-col items-center gap-3">
-                {rememberedUsers.length > 0 && (
-                  <button
-                    onClick={() => {
-                      setEmail("");
-                      setPassword("");
-                      setError("");
-                      setView("selector");
-                    }}
-                    className="text-sm text-[#666] hover:text-white transition-colors"
-                  >
-                    Back to accounts
-                  </button>
-                )}
-                <div className="w-12 h-px bg-white/10" />
-                <button
-                  onClick={switchToSignUp}
-                  className="text-sm text-[#666] hover:text-white transition-colors"
-                >
-                  Create an account
-                </button>
-              </div>
-            </motion.div>
-          )}
-
-          {/* ── Sign Up Form ── */}
-          {view === "signup" && (
-            <motion.div
-              key="signup"
-              {...fadeUp}
-              className="mt-8 flex flex-col items-center w-full"
-            >
-              <button
-                onClick={switchToSignIn}
-                className="self-start flex items-center gap-1.5 text-sm text-[#666] hover:text-white transition-colors mb-4"
-              >
-                <ArrowLeft size={14} />
-                Back
-              </button>
-
-              <h1
-                className="text-xl font-semibold text-white text-center"
-                style={{ fontFamily: "var(--font-manrope), sans-serif" }}
-              >
-                Create your account
-              </h1>
-              <p className="mt-2 text-sm text-[#999] text-center">
-                Get started with Entity
-              </p>
-
-              <form
-                onSubmit={handleSignUp}
-                className="mt-8 w-full space-y-4"
-              >
-                <Input
-                  label="Full Name"
-                  type="text"
-                  value={name}
-                  onChange={(e) => {
-                    setName(e.target.value);
-                    setError("");
-                  }}
-                  placeholder="Your full name"
-                  required
-                  autoFocus
-                />
-
-                <Input
-                  label="Email"
-                  type="email"
-                  value={email}
-                  onChange={(e) => {
-                    setEmail(e.target.value);
-                    setError("");
-                  }}
-                  placeholder="you@company.com"
-                  required
-                />
-
-                <PasswordInput
-                  label="Password"
-                  value={password}
-                  onChange={(e) => {
-                    setPassword(e.target.value);
-                    setError("");
-                  }}
-                  placeholder="Minimum 8 characters"
-                  required
-                />
-
-                {error && (
-                  <p className="text-red-400 text-sm text-center">{error}</p>
-                )}
-
-                <button
-                  type="submit"
-                  disabled={loading}
-                  className="group flex items-center justify-center gap-2 w-full py-3.5 px-6 rounded-xl text-sm font-medium text-[#0A0A0A] bg-white transition-all duration-200 hover:shadow-[0_0_40px_rgba(150,106,248,0.2)] hover:scale-[1.02] active:scale-[0.98] disabled:opacity-60 disabled:hover:scale-100"
-                >
-                  {loading ? (
-                    <Spinner />
-                  ) : (
-                    <>
-                      Create Account
-                      <ArrowRight
-                        size={16}
-                        className="transition-transform duration-200 group-hover:translate-x-0.5"
-                      />
-                    </>
-                  )}
-                </button>
-              </form>
-
-              <div className="mt-6 flex flex-col items-center gap-3">
-                <div className="w-12 h-px bg-white/10" />
                 <button
                   onClick={switchToSignIn}
-                  className="text-sm text-[#666] hover:text-white transition-colors"
+                  className="mt-8 font-body text-[14px] text-[#6B6B6B] hover:text-[#1A1A1A] transition-colors"
                 >
-                  Already have an account? Sign in
+                  Use a different account
                 </button>
-              </div>
-            </motion.div>
-          )}
 
-          {/* ── Check Email Confirmation ── */}
-          {view === "check-email" && (
-            <motion.div
-              key="check-email"
-              {...fadeUp}
-              className="mt-8 flex flex-col items-center w-full"
-            >
-              <div className="w-14 h-14 rounded-full bg-white/10 border border-white/20 flex items-center justify-center">
-                <svg
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="white"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
+                <div className="mt-4 w-full flex flex-col items-center gap-3">
+                  <div className="divider-line" />
+                  <button
+                    onClick={switchToSignUp}
+                    className="font-body text-[14px] text-[#6B6B6B] hover:text-[#1A1A1A] transition-colors"
+                  >
+                    Create an account
+                  </button>
+                </div>
+              </motion.div>
+            )}
+
+            {/* ── Sign In Form ── */}
+            {view === "signin" && (
+              <motion.div key="signin" {...fadeUp}>
+                <h1 className="font-display text-[22px] font-bold text-[#1A1A1A] mb-1">
+                  Sign in to <span className="text-gradient">Entity</span>
+                </h1>
+                <p className="font-body text-[14px] text-[#6B6B6B] mb-6">
+                  AI-native accounting platform
+                </p>
+
+                <form onSubmit={handleSignIn} className="space-y-4">
+                  <Input
+                    label="Email"
+                    type="email"
+                    value={email}
+                    onChange={(e) => {
+                      setEmail(e.target.value);
+                      setError("");
+                    }}
+                    placeholder="you@company.com"
+                    required
+                    autoFocus={!email}
+                  />
+
+                  <PasswordInput
+                    label="Password"
+                    value={password}
+                    onChange={(e) => {
+                      setPassword(e.target.value);
+                      setError("");
+                    }}
+                    placeholder="Enter your password"
+                    required
+                    autoFocus={!!email}
+                  />
+
+                  {error && (
+                    <p className="text-red-500 text-[13px] text-center">
+                      {error}
+                    </p>
+                  )}
+
+                  <button
+                    type="submit"
+                    disabled={loading}
+                    className="w-full flex items-center justify-center gap-2 px-6 py-3.5 bg-[#1A1A1A] text-white font-body font-medium text-[15px] rounded-xl hover:bg-[#000] transition-all duration-200 shadow-[0_4px_12px_rgba(0,0,0,0.15)] hover:shadow-[0_6px_20px_rgba(0,0,0,0.25)] hover:scale-[1.02] active:scale-[0.98] disabled:opacity-60 disabled:hover:scale-100 mt-2"
+                  >
+                    {loading ? (
+                      <Spinner />
+                    ) : (
+                      <>
+                        Sign In
+                        <ArrowRight size={16} />
+                      </>
+                    )}
+                  </button>
+                </form>
+
+                <div className="mt-6 flex flex-col items-center gap-3">
+                  {rememberedUsers.length > 0 && (
+                    <button
+                      onClick={() => {
+                        setEmail("");
+                        setPassword("");
+                        setError("");
+                        setView("selector");
+                      }}
+                      className="font-body text-[14px] text-[#6B6B6B] hover:text-[#1A1A1A] transition-colors"
+                    >
+                      Back to accounts
+                    </button>
+                  )}
+                  <div className="divider-line" />
+                  <button
+                    onClick={switchToSignUp}
+                    className="font-body text-[14px] text-[#6B6B6B] hover:text-[#1A1A1A] transition-colors"
+                  >
+                    Create an account
+                  </button>
+                </div>
+              </motion.div>
+            )}
+
+            {/* ── Sign Up Form ── */}
+            {view === "signup" && (
+              <motion.div key="signup" {...fadeUp}>
+                <button
+                  onClick={switchToSignIn}
+                  className="flex items-center gap-1.5 font-body text-[13px] text-[#6B6B6B] hover:text-[#1A1A1A] transition-colors mb-4"
                 >
-                  <rect x="2" y="4" width="20" height="16" rx="2" />
-                  <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
-                </svg>
-              </div>
+                  <ArrowLeft size={14} />
+                  Back
+                </button>
 
-              <h1
-                className="mt-6 text-xl font-semibold text-white text-center"
-                style={{ fontFamily: "var(--font-manrope), sans-serif" }}
-              >
-                Check your email
-              </h1>
-              <p className="mt-2 text-sm text-[#999] text-center leading-relaxed max-w-[280px]">
-                We sent a confirmation link to{" "}
-                <span className="text-white">{email}</span>. Click the link to
-                activate your account.
-              </p>
+                <h1 className="font-display text-[22px] font-bold text-[#1A1A1A] mb-1">
+                  Create your account
+                </h1>
+                <p className="font-body text-[14px] text-[#6B6B6B] mb-6">
+                  Get started with Entity
+                </p>
 
-              <button
-                onClick={switchToSignIn}
-                className="mt-8 text-sm text-[#666] hover:text-white transition-colors"
+                <form onSubmit={handleSignUp} className="space-y-4">
+                  <Input
+                    label="Full Name"
+                    type="text"
+                    value={name}
+                    onChange={(e) => {
+                      setName(e.target.value);
+                      setError("");
+                    }}
+                    placeholder="Your full name"
+                    required
+                    autoFocus
+                  />
+
+                  <Input
+                    label="Email"
+                    type="email"
+                    value={email}
+                    onChange={(e) => {
+                      setEmail(e.target.value);
+                      setError("");
+                    }}
+                    placeholder="you@company.com"
+                    required
+                  />
+
+                  <PasswordInput
+                    label="Password"
+                    value={password}
+                    onChange={(e) => {
+                      setPassword(e.target.value);
+                      setError("");
+                    }}
+                    placeholder="Minimum 8 characters"
+                    required
+                  />
+
+                  {error && (
+                    <p className="text-red-500 text-[13px] text-center">
+                      {error}
+                    </p>
+                  )}
+
+                  <button
+                    type="submit"
+                    disabled={loading}
+                    className="w-full flex items-center justify-center gap-2 px-6 py-3.5 bg-[#1A1A1A] text-white font-body font-medium text-[15px] rounded-xl hover:bg-[#000] transition-all duration-200 shadow-[0_4px_12px_rgba(0,0,0,0.15)] hover:shadow-[0_6px_20px_rgba(0,0,0,0.25)] hover:scale-[1.02] active:scale-[0.98] disabled:opacity-60 disabled:hover:scale-100 mt-2"
+                  >
+                    {loading ? (
+                      <Spinner />
+                    ) : (
+                      <>
+                        Create Account
+                        <ArrowRight size={16} />
+                      </>
+                    )}
+                  </button>
+                </form>
+
+                <div className="mt-6 flex flex-col items-center gap-3">
+                  <div className="divider-line" />
+                  <button
+                    onClick={switchToSignIn}
+                    className="font-body text-[14px] text-[#6B6B6B] hover:text-[#1A1A1A] transition-colors"
+                  >
+                    Already have an account? Sign in
+                  </button>
+                </div>
+              </motion.div>
+            )}
+
+            {/* ── Check Email Confirmation ── */}
+            {view === "check-email" && (
+              <motion.div
+                key="check-email"
+                {...fadeUp}
+                className="flex flex-col items-center text-center py-4"
               >
-                Back to sign in
-              </button>
-            </motion.div>
-          )}
-        </AnimatePresence>
+                <div className="w-14 h-14 bg-[#F2F2ED] rounded-full flex items-center justify-center mb-5">
+                  <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="#1A1A1A"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <rect x="2" y="4" width="20" height="16" rx="2" />
+                    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                  </svg>
+                </div>
+
+                <h1 className="font-display text-[22px] font-bold text-[#1A1A1A] mb-2">
+                  Check your email
+                </h1>
+                <p className="font-body text-[14px] text-[#6B6B6B] leading-relaxed max-w-[280px]">
+                  We sent a confirmation link to{" "}
+                  <span className="font-medium text-[#1A1A1A]">{email}</span>.
+                  Click the link to activate your account.
+                </p>
+
+                <button
+                  onClick={switchToSignIn}
+                  className="mt-6 font-body text-[14px] text-[#6B6B6B] hover:text-[#1A1A1A] transition-colors"
+                >
+                  Back to sign in
+                </button>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </motion.div>
+
+        {/* Footer trust line */}
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.4 }}
+          className="mt-6 font-body text-[12px] text-[#999]"
+        >
+          Trusted by 500+ firms across India
+        </motion.p>
       </div>
     </div>
   );
