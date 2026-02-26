@@ -23,7 +23,7 @@ export default function AnnouncementBanner() {
               className="inline-flex items-center gap-2 hover:opacity-80 transition-opacity"
             >
               <span className="text-white/90 text-[13px] font-body">
-                Entity raises $4M to build the AI-native accounting platform
+                Enter the Entity
               </span>
               <ArrowRight size={12} className="text-white/30" />
             </a>
