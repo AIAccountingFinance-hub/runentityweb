@@ -339,18 +339,15 @@ function LoginContent() {
           transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
           className="w-full bg-white border border-[#E5E5E0] rounded-2xl shadow-[0_4px_24px_rgba(0,0,0,0.06)] p-6 sm:p-8"
         >
-          {/* Logo — inside card, always centered */}
+          {/* Logo — inside card, centered */}
           <motion.a
             href="https://www.runentity.com"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.1 }}
-            className="flex items-center justify-center gap-2 mb-8"
+            className="flex items-center justify-center mb-8"
           >
-            <EntityMark size={36} state="idle" theme="light" />
-            <span className="font-body font-bold text-[20px] text-[#1A1A1A] tracking-tight">
-              Entity
-            </span>
+            <EntityMark size={42} state="idle" theme="light" />
           </motion.a>
 
           <AnimatePresence mode="wait">
