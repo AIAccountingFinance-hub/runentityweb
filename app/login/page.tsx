@@ -41,6 +41,48 @@ function rememberUser(email: string, fullName: string) {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(filtered.slice(0, 5)));
 }
 
+// ── Validation ──
+
+const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+const DISPOSABLE_DOMAINS = [
+  "mailinator.com",
+  "guerrillamail.com",
+  "tempmail.com",
+  "throwaway.email",
+  "yopmail.com",
+  "sharklasers.com",
+  "guerrillamailblock.com",
+  "grr.la",
+  "dispostable.com",
+  "trashmail.com",
+  "10minutemail.com",
+  "temp-mail.org",
+  "fakeinbox.com",
+  "maildrop.cc",
+  "getairmail.com",
+];
+
+function validateEmail(email: string): string | null {
+  if (!email) return "Email is required";
+  if (!EMAIL_REGEX.test(email)) return "Enter a valid email address";
+  const domain = email.split("@")[1]?.toLowerCase();
+  if (DISPOSABLE_DOMAINS.includes(domain))
+    return "Please use a permanent email address";
+  return null;
+}
+
+function validatePassword(password: string): string | null {
+  if (!password) return "Password is required";
+  if (password.length < 8) return "Password must be at least 8 characters";
+  return null;
+}
+
+function validateName(name: string): string | null {
+  if (!name.trim()) return "Name is required";
+  if (name.trim().length < 2) return "Name must be at least 2 characters";
+  return null;
+}
+
 // ── Animation variants ──
 
 const fadeUp = {
@@ -124,7 +166,7 @@ function Spinner() {
     <motion.div
       animate={{ rotate: 360 }}
       transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-      className="w-5 h-5 border-2 border-[#1A1A1A]/20 border-t-[#1A1A1A] rounded-full"
+      className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full"
     />
   );
 }
@@ -145,6 +187,7 @@ function LoginContent() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
   const [loading, setLoading] = useState(false);
 
   // Load remembered users on mount
@@ -163,9 +206,27 @@ function LoginContent() {
     }
   }, [searchParams]);
 
+  const clearErrors = () => {
+    setError("");
+    setFieldErrors({});
+  };
+
   const handleSignIn = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError("");
+    clearErrors();
+
+    // Validate fields
+    const errors: Record<string, string> = {};
+    const emailErr = validateEmail(email);
+    if (emailErr) errors.email = emailErr;
+    const passErr = validatePassword(password);
+    if (passErr) errors.password = passErr;
+
+    if (Object.keys(errors).length > 0) {
+      setFieldErrors(errors);
+      return;
+    }
+
     setLoading(true);
 
     const { data, error: authError } = await supabase.auth.signInWithPassword({
@@ -195,10 +256,19 @@ function LoginContent() {
 
   const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError("");
+    clearErrors();
 
-    if (password.length < 8) {
-      setError("Password must be at least 8 characters");
+    // Validate all fields
+    const errors: Record<string, string> = {};
+    const nameErr = validateName(name);
+    if (nameErr) errors.name = nameErr;
+    const emailErr = validateEmail(email);
+    if (emailErr) errors.email = emailErr;
+    const passErr = validatePassword(password);
+    if (passErr) errors.password = passErr;
+
+    if (Object.keys(errors).length > 0) {
+      setFieldErrors(errors);
       return;
     }
 
@@ -208,7 +278,7 @@ function LoginContent() {
       email,
       password,
       options: {
-        data: { full_name: name },
+        data: { full_name: name.trim() },
         emailRedirectTo: `${window.location.origin}/auth/callback`,
       },
     });
@@ -226,14 +296,14 @@ function LoginContent() {
   const selectUser = (user: RememberedUser) => {
     setEmail(user.email);
     setPassword("");
-    setError("");
+    clearErrors();
     setView("signin");
   };
 
   const switchToSignIn = () => {
     setEmail("");
     setPassword("");
-    setError("");
+    clearErrors();
     setView("signin");
   };
 
@@ -241,7 +311,7 @@ function LoginContent() {
     setName("");
     setEmail("");
     setPassword("");
-    setError("");
+    clearErrors();
     setView("signup");
   };
 
@@ -261,28 +331,28 @@ function LoginContent() {
         />
       </div>
 
-      <div className="relative z-10 flex flex-col items-center px-5 w-full max-w-[400px]">
-        {/* Logo */}
-        <motion.a
-          href="https://www.runentity.com"
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="flex items-center gap-2 mb-10"
-        >
-          <EntityMark size={42} state="idle" theme="light" />
-          <span className="font-body font-bold text-[22px] text-[#1A1A1A] tracking-tight">
-            Entity
-          </span>
-        </motion.a>
-
+      <div className="relative z-10 flex flex-col items-center px-5 w-full max-w-[420px]">
         {/* Card */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.15 }}
+          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
           className="w-full bg-white border border-[#E5E5E0] rounded-2xl shadow-[0_4px_24px_rgba(0,0,0,0.06)] p-6 sm:p-8"
         >
+          {/* Logo — inside card, always centered */}
+          <motion.a
+            href="https://www.runentity.com"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.1 }}
+            className="flex items-center justify-center gap-2 mb-8"
+          >
+            <EntityMark size={36} state="idle" theme="light" />
+            <span className="font-body font-bold text-[20px] text-[#1A1A1A] tracking-tight">
+              Entity
+            </span>
+          </motion.a>
+
           <AnimatePresence mode="wait">
             {/* ── User Selector (macOS-style) ── */}
             {view === "selector" && (
@@ -291,10 +361,10 @@ function LoginContent() {
                 {...fadeUp}
                 className="flex flex-col items-center"
               >
-                <h1 className="font-display text-[22px] font-bold text-[#1A1A1A] mb-1">
+                <h1 className="font-display text-[22px] font-bold text-[#1A1A1A] mb-1 text-center">
                   Welcome back
                 </h1>
-                <p className="font-body text-[14px] text-[#6B6B6B] mb-8">
+                <p className="font-body text-[14px] text-[#6B6B6B] mb-8 text-center">
                   Choose an account to sign in
                 </p>
 
@@ -339,10 +409,10 @@ function LoginContent() {
             {/* ── Sign In Form ── */}
             {view === "signin" && (
               <motion.div key="signin" {...fadeUp}>
-                <h1 className="font-display text-[22px] font-bold text-[#1A1A1A] mb-1">
+                <h1 className="font-display text-[22px] font-bold text-[#1A1A1A] mb-1 text-center">
                   Sign in to <span className="text-gradient">Entity</span>
                 </h1>
-                <p className="font-body text-[14px] text-[#6B6B6B] mb-6">
+                <p className="font-body text-[14px] text-[#6B6B6B] mb-6 text-center">
                   AI-native accounting platform
                 </p>
 
@@ -353,11 +423,13 @@ function LoginContent() {
                     value={email}
                     onChange={(e) => {
                       setEmail(e.target.value);
+                      setFieldErrors((p) => ({ ...p, email: "" }));
                       setError("");
                     }}
                     placeholder="you@company.com"
                     required
                     autoFocus={!email}
+                    error={fieldErrors.email}
                   />
 
                   <PasswordInput
@@ -365,11 +437,13 @@ function LoginContent() {
                     value={password}
                     onChange={(e) => {
                       setPassword(e.target.value);
+                      setFieldErrors((p) => ({ ...p, password: "" }));
                       setError("");
                     }}
                     placeholder="Enter your password"
                     required
                     autoFocus={!!email}
+                    error={fieldErrors.password}
                   />
 
                   {error && (
@@ -400,7 +474,7 @@ function LoginContent() {
                       onClick={() => {
                         setEmail("");
                         setPassword("");
-                        setError("");
+                        clearErrors();
                         setView("selector");
                       }}
                       className="font-body text-[14px] text-[#6B6B6B] hover:text-[#1A1A1A] transition-colors"
@@ -430,10 +504,10 @@ function LoginContent() {
                   Back
                 </button>
 
-                <h1 className="font-display text-[22px] font-bold text-[#1A1A1A] mb-1">
+                <h1 className="font-display text-[22px] font-bold text-[#1A1A1A] mb-1 text-center">
                   Create your account
                 </h1>
-                <p className="font-body text-[14px] text-[#6B6B6B] mb-6">
+                <p className="font-body text-[14px] text-[#6B6B6B] mb-6 text-center">
                   Get started with Entity
                 </p>
 
@@ -444,11 +518,13 @@ function LoginContent() {
                     value={name}
                     onChange={(e) => {
                       setName(e.target.value);
+                      setFieldErrors((p) => ({ ...p, name: "" }));
                       setError("");
                     }}
                     placeholder="Your full name"
                     required
                     autoFocus
+                    error={fieldErrors.name}
                   />
 
                   <Input
@@ -457,10 +533,12 @@ function LoginContent() {
                     value={email}
                     onChange={(e) => {
                       setEmail(e.target.value);
+                      setFieldErrors((p) => ({ ...p, email: "" }));
                       setError("");
                     }}
                     placeholder="you@company.com"
                     required
+                    error={fieldErrors.email}
                   />
 
                   <PasswordInput
@@ -468,10 +546,12 @@ function LoginContent() {
                     value={password}
                     onChange={(e) => {
                       setPassword(e.target.value);
+                      setFieldErrors((p) => ({ ...p, password: "" }));
                       setError("");
                     }}
                     placeholder="Minimum 8 characters"
                     required
+                    error={fieldErrors.password}
                   />
 
                   {error && (

@@ -54,6 +54,12 @@ export default function Navigation() {
                 {link.label}
               </a>
             ))}
+            <a
+              href="https://app.runentity.com"
+              className="font-body text-[14px] font-medium text-white bg-[#1A1A1A] px-5 py-2 rounded-lg hover:bg-[#000] transition-all duration-200 shadow-[0_2px_8px_rgba(0,0,0,0.12)]"
+            >
+              Login
+            </a>
           </div>
 
           {/* Mobile Menu Button */}
@@ -99,6 +105,12 @@ export default function Navigation() {
                   {link.label}
                 </a>
               ))}
+              <a
+                href="https://app.runentity.com"
+                className="font-body text-sm font-medium text-white bg-[#1A1A1A] px-3 py-2.5 rounded-xl text-center mt-1"
+              >
+                Login
+              </a>
             </div>
           </motion.div>
         )}
