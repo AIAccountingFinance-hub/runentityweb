@@ -3,7 +3,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { EntityMark } from "@/components/entity-mark";
 import StarField from "@/components/ui/StarField";
-import { ArrowRight, Eye, EyeOff } from "lucide-react";
+import { ArrowLeft, ArrowRight, Eye, EyeOff } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState, useEffect, Suspense } from "react";
@@ -430,6 +430,14 @@ function LoginContent() {
               {...fadeUp}
               className="mt-8 flex flex-col items-center w-full"
             >
+              <button
+                onClick={switchToSignIn}
+                className="self-start flex items-center gap-1.5 text-sm text-[#666] hover:text-white transition-colors mb-4"
+              >
+                <ArrowLeft size={14} />
+                Back
+              </button>
+
               <h1
                 className="text-xl font-semibold text-white text-center"
                 style={{ fontFamily: "var(--font-manrope), sans-serif" }}
